@@ -1,4 +1,4 @@
-tag: user.vim
+app: neovim
 -
 # TODO: move these outside of this file, as we don't want to enable it
 # when in command mode for instance

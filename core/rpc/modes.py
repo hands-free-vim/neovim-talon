@@ -364,13 +364,12 @@ class VimMode:
             print(f"set_mode(): is_insert_mode")
             # XXX - this might need to be a or for no_preserve and
             # settings.get?
-            if (
-                wanted_mode == self.NORMAL
-                and no_preserve is False
-                and settings.get("user.vim_preserve_insert_mode") >= 1
-            ):
-                if settings.get("user.vim_mode_switch_moves_cursor") == 0:
-                    actions.key("ctrl-\\")
+            if wanted_mode == self.NORMAL and no_preserve is False:
+                # When you preserve mode and switch into into insert mode it will often
+                # move your cursor, which can mess up the commands you're trying to run from
+                # insert. This avoids that
+                actions.key("ctrl-\\")
+
                 actions.key("ctrl-o")
                 # XXX - Same oddity as terminal escape above
                 time.sleep(0.05)
@@ -425,12 +424,3 @@ class VimMode:
             actions.key("R")
         elif wanted_mode == self.VISUAL_REPLACE:
             actions.key("g R")
-
-        # Here we assume we are now in some normalized state:
-        # need to make the notify command configurable
-        if settings.get("user.vim_notify_mode_changes") >= 1:
-            self.notify_mode_change(wanted_mode)
-
-    def notify_mode_change(self, mode):
-        """Function to be customized by talon user to determine how they want
-        notifications on mode changes"""
