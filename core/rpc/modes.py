@@ -1,4 +1,4 @@
-from talon import Module, actions, settings, ui
+from talon import Module, actions, settings, ui, app
 
 from .rpc import NeoVimRPC
 from ..error import VimError
@@ -150,11 +150,13 @@ class VimMode:
             return "user.vim_mode_command"
 
     def insert_text(self, text):
-        actions.user.paste(text)
-        # if app.platform == "linux":
-        #     actions.user.paste(text)
-        # else:
-        #     actions.insert(text)
+        # actions.user.paste(text) # TODO: this is community
+        # actions.user.paste_text(text)  # TODO: this is andreas-talon
+        # TODO: below can be deleted?
+        if app.platform == "linux":
+            actions.user.paste(text)
+        else:
+            actions.insert(text)
 
     def insert_command_mode_command(self, cmd):
         """prepare the command to be pasted into command mode"""
@@ -162,10 +164,8 @@ class VimMode:
         scmd = cmd.rstrip("\n")
         if scmd[0] == ":":
             self.insert_text(scmd[1:])
-            # actions.user.paste(scmd[1:])
         else:
             self.insert_text(scmd)
-            # actions.user.paste(scmd)
         if cmd[-1] == "\n":
             actions.key("enter")
 
