@@ -59,14 +59,12 @@ class Actions:
         """press a given list of keys in normal mode"""
         actions.user.vim_set_normal(auto=False)
         for key in keys.split(" "):
-            # print(key)
             actions.key(key)
 
     def vim_run_normal_exterm_keys(keys: str, term_return: str = "False"):
         """press a given list of keys in normal mode"""
         v = actions.user.vim_set_normal_exterm()
         for key in keys.split(" "):
-            # print(key)
             actions.key(key)
         if term_return == "True":
             v.set_insert_mode()

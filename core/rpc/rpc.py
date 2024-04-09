@@ -39,7 +39,6 @@ class VimRPC:
             v.run_command_mode_command(cmd)
         else:
             try:
-                # print(f"sending: {cmd}")
                 self.nvrpc.nvim.command(cmd, async_=True)
             # I sometimes get this for things like needing a w! for write...
             except pynvim.api.common.NvimError as e:
@@ -72,9 +71,6 @@ class NeoVimRPC:
         self.init_ok = False
         self.nvim = None
 
-        if settings.get("user.vim_use_rpc") == 0:
-            return
-
         self.rpc_path = self.get_active_rpc()
         if self.rpc_path is not None:
             try:
@@ -83,8 +79,6 @@ class NeoVimRPC:
                 # need to set them to WARNING every time
                 loggers = logging.root.manager.loggerDict.keys()
                 for l in loggers:
-                    # if l.startswith("pynvim"):
-                    # print(f"DEBUG: Resetting log level for {l}")
                     nvim_logger = logging.getLogger(l)
                     nvim_logger.setLevel(logging.ERROR)
                 # loggers = [
@@ -92,10 +86,6 @@ class NeoVimRPC:
                 # ]
 
                 # NOTE: This is used to avoid "Using selector: EpollSelector" spam
-                from pprint import pprint
-
-                # pprint("Detected loggers:")
-                # pprint(loggers)
                 self.nvim = pynvim.attach("socket", path=self.rpc_path)
             except RuntimeError:
                 return
@@ -111,7 +101,5 @@ class NeoVimRPC:
         return None
 
     def get_active_mode(self):
-        # print("get_active_mode()")
         mode = self.nvim.request("nvim_get_mode")
-        # print(f"get_active_mode(): {mode:}")
         return mode

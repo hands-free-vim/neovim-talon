@@ -23,7 +23,6 @@ class Actions:
 
     def vim_set_normal_np(auto: bool = True):
         """set normal mode and don't preserve the previous mode"""
-        print("vim_set_normal_np()")
         v = VimMode()
         v.set_normal_mode_np(auto=auto)
         return v
@@ -52,7 +51,6 @@ class Actions:
 
     def vim_set_terminal():
         """set terminal mode"""
-        print("vim_set_terminal()")
         v = VimMode()
         v.set_terminal_mode()
         return v
