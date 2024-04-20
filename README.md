@@ -6,7 +6,7 @@ Talon user file set for controlling both neovim editing and neovim terminals usi
 
 NOTE: Atm you need to use the beta branch of this repository.
 
-Download or clone the repo to your user talon folder:
+Download or clone the repo to your Talon user folder:
 
 ```
 git clone https://github.com/hands-free-vim/neovim-talon
