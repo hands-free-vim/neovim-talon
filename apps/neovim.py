@@ -30,6 +30,17 @@ app: neovim
 """
 
 
+ctx.tags = ["user.command_client"]
+
+@ctx.action_class("user")
+class CommandClientActions:
+    def command_server_directory() -> str:
+        return "neovim-command-server"
+
+    def trigger_command_server_command_execution():
+        actions.key("ctrl-q")
+
+
 # Based on you using a custom titlestring see doc/vim.md
 @ctx.action_class("win")
 class win_actions:
