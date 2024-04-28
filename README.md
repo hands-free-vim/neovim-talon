@@ -1,6 +1,34 @@
+<!-- vim-markdown-toc GFM -->
+
+- [neovim-talon](#neovim-talon)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [FAQ](#faq)
+    - [What's the difference with talon-vim?](#whats-the-difference-with-talon-vim)
+
+<!-- vim-markdown-toc -->
+
 # neovim-talon
 
 Talon user file set for controlling both neovim editing and neovim terminals using Talon voice.
+
+## Prerequisites
+
+- neovim Python package: https://github.com/neovim/pynvim (installed in Talon Python)
+
+On Windows:
+
+```
+%APPDATA%\talon\venv\3.11\Scripts\python.exe -s -m pip install pynvim
+```
+
+On Linux:
+
+TBC
+
+On OS X:
+
+TBC
 
 ## Installation
 
