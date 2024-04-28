@@ -2,10 +2,33 @@ from talon import Context, Module, actions, app, settings, ui
 
 from .direct_input import VimDirectInput
 
-import logging
+import logging, sys
+from pathlib import Path
 
 # TODO: make sure pynvim is installed in talon python environment
-import pynvim
+
+# Adjust path to search adjacent package directories. Prefixed with dot to avoid
+# Talon running them itself. Append to search path so that faster binary
+# packages can be used instead if available.
+subtree_dir = Path(__file__).parent / ".." / ".." / ".subtrees"
+package_paths = [
+    str(subtree_dir / "msgpack-python"),
+    # str(subtree_dir / "greenlet/src"),
+    str(subtree_dir / "greenlet/build/lib.win-amd64-cpython-311"),
+    str(subtree_dir / "pynvim"),
+]
+saved_path = sys.path.copy()
+try:
+    sys.path.extend([path for path in package_paths if path not in sys.path])
+    # sys.path = package_paths + sys.path
+    print(sys.path)
+    import pynvim
+
+finally:
+    # Restore the unmodified path.
+    sys.path = saved_path.copy()
+
+print(pynvim.__version__)
 
 
 class VimRPC:

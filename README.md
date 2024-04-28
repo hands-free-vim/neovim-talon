@@ -19,3 +19,7 @@ git checkout beta
 ### What's the difference with talon-vim?
 
 If you have never heard of talon-vim, you can ignore it. Otherwise, you just need to know that neovim-talon is the new talon-vim. In other words, neovim-talon is a more barebones refactor of the old fidgetingbits talon-vim repo code.
+
+### Python dependencies?
+
+All Python package dependencies are present in the .subtrees directory so that no pip installations are needed. If packages have been installed manually through pip, these will be preferred (e.g. so that faster binary packages can be used.)
