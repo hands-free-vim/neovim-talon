@@ -23,6 +23,10 @@ and app.exe: conhost.exe
 
 os: windows
 and app.exe: nvim-qt.exe
+
+os: linux
+and win.title: /VIM MODE/
+and win.title: /nvim/
 """
 
 ctx.matches = r"""
