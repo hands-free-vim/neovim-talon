@@ -32,14 +32,10 @@ TBC
 
 ## Installation
 
-NOTE: Atm you need to use the beta branch of this repository.
-
 Download or clone the repo to your Talon user folder:
 
 ```
 git clone https://github.com/hands-free-vim/neovim-talon
-cd neovim-talon
-git checkout beta
 ```
 
 ## FAQ
