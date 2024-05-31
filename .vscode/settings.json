@@ -1,0 +1,9 @@
+{
+    "editor.formatOnSave": true,
+    "[python]": {
+      "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "[talon]": {
+      "editor.defaultFormatter": "AndreasArvidsson.andreas-talon"
+    }
+}
