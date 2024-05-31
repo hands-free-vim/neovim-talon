@@ -154,7 +154,11 @@ class VimMode:
         if cmd[-1] == "\n":
             actions.key("enter")
 
+<<<<<<< HEAD
     def set_normal_mode(self):
+=======
+    def set_normal_mode(self, auto=True):
+>>>>>>> cfb3c82 (fix: bunch of changes from migration to neovim-talon)
         return self.adjust_mode(self.NORMAL)
 
     def set_normal_mode_exterm(self):
