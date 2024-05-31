@@ -1,6 +1,14 @@
 from talon import Context, Module, actions, app, settings, ui
 
+
 mod = Module()
+
+mod.setting(
+    "neovim_command_server_shortcut",
+    type=str,
+    default="ctrl-shift-f12",
+    desc="The shortcut to trigger the command server",
+)
 ctx = Context()
 
 # Neovim (commandline version) and nvim-qt.exe (GUI version)
@@ -43,7 +51,8 @@ class CommandClientActions:
         return "neovim-command-server"
 
     def trigger_command_server_command_execution():
-        actions.key("ctrl-shift-f12")
+        shortcut = settings.get("user.neovim_command_server_shortcut")
+        actions.key(shortcut)
 
 
 # Based on you using a custom titlestring see doc/vim.md
