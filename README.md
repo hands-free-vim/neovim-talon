@@ -16,19 +16,17 @@ Talon user file set for controlling both neovim editing and neovim terminals usi
 
 - neovim Python package: https://github.com/neovim/pynvim (installed in Talon Python)
 
-On Windows:
+### Windows
 
 ```
 %APPDATA%\talon\venv\3.11\Scripts\python.exe -s -m pip install pynvim
 ```
 
-On Linux:
+### MacOS and Linux
 
-TBC
-
-On OS X:
-
-TBC
+```
+~/.talon/bin/pip install pynvim
+```
 
 ## Installation
 
