@@ -9,10 +9,10 @@ mod = Module()
 # TODO: rename these function vim_mode_set_* or vim_mode_* instead of vim_set_*?
 @mod.action_class
 class Actions:
-    def vim_set_normal(auto: bool = True):
+    def vim_set_normal():
         """set normal mode"""
         v = VimMode()
-        v.set_normal_mode(auto=auto)
+        v.set_normal_mode()
         return v
 
     def vim_set_normal_exterm():
@@ -21,10 +21,10 @@ class Actions:
         v.set_normal_mode_exterm()
         return v
 
-    def vim_set_normal_np(auto: bool = True):
+    def vim_set_normal_np():
         """set normal mode and don't preserve the previous mode"""
         v = VimMode()
-        v.set_normal_mode_np(auto=auto)
+        v.set_normal_mode_np()
         return v
 
     def vim_set_visual():
@@ -61,7 +61,7 @@ class Actions:
         v.set_command_mode()
         return v
 
-    def vim_set_command_extern():
+    def vim_set_command_exterm():
         """set visual mode"""
         v = VimMode()
         v.set_command_mode_exterm()
@@ -79,6 +79,7 @@ class Actions:
         v.set_visual_replace_mode()
         return v
 
+    # Why do these exist?
     def vim_set_any_motion_mode():
         """set any motion mode"""
         v = VimMode()

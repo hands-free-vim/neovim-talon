@@ -155,7 +155,7 @@ class VimMode:
             actions.key("enter")
 
     def set_normal_mode(self, auto=True):
-        return self.adjust_mode(self.NORMAL, auto=auto)
+        return self.adjust_mode(self.NORMAL)
 
     def set_normal_mode_exterm(self):
         return self.adjust_mode(self.NORMAL, escape_terminal=True)
@@ -204,9 +204,7 @@ class VimMode:
     def set_any_motion_mode_np(self):
         return self.adjust_mode(self.NORMAL, no_preserve=True)
 
-    def adjust_mode(
-        self, valid_mode_ids, no_preserve=False, escape_terminal=False, auto=True
-    ):
+    def adjust_mode(self, valid_mode_ids, no_preserve=False, escape_terminal=False):
         cur = self.current_mode_id()
         if type(valid_mode_ids) != list:
             valid_mode_ids = [valid_mode_ids]
