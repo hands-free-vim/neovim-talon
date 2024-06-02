@@ -1,7 +1,8 @@
-from talon import Context, actions, app
+from talon import Context, Module, actions, app
 
 import time
 
+mod = Module()
 # Context valid in some sort of motion mode, so not including terminal or command mode
 ctx_motion = Context()
 ctx_motion.matches = r"""
@@ -47,6 +48,7 @@ class EditActions:
         actions.user.vim_run_any_motion_key("$")
 
     def select_line(n: int = None):
+        # FIXME: Support the argument
         actions.user.vim_run_visual("V")
 
     def extend_line_up():
@@ -108,6 +110,7 @@ class EditActions:
 class EditActions:
     def select_line(n: int = None):
         if n is not None:
+            # FIXME: Implement this
             app.notify("select_line() with argument not implemented")
             return
         actions.user.vim_run_normal_exterm("V")
@@ -133,3 +136,13 @@ class EditActions:
 
     def delete_line():
         actions.insert("D")
+
+
+# FIXME: TEMPORARY: Once https://github.com/talonhub/community/pull/1449 is merged, this should be removed
+@mod.action_class
+class LineActions:
+    def line_find_forward(key: str):
+        """Finds the next character in the line"""
+
+    def line_find_backward(key: str):
+        """Finds the previous character in the line"""
