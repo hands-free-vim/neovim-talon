@@ -32,7 +32,17 @@ Talon user file set for controlling both neovim editing and neovim terminals usi
 
 Download or clone the repo to your Talon user folder:
 
+### Windows
+
 ```
+cd %AppData%\Talon\user
+git clone https://github.com/hands-free-vim/neovim-talon
+```
+
+### MacOS and Linux
+
+```
+cd ~/.talon/user
 git clone https://github.com/hands-free-vim/neovim-talon
 ```
 
