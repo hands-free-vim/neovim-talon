@@ -1,5 +1,5 @@
-win.title: /VIM MODE:i/
-win.title: /VIM MODE:ic/
-win.title: /VIM MODE:ix/
+win.title: /VIM MODE:R/
+win.title: /VIM MODE:Rv/
 -
-tag(): user.vim_mode_insert
+
+tag(): user.vim_mode_replace
