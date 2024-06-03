@@ -16,33 +16,33 @@ ctx.tags = ["user.splits"]
 class UserActions:
     # ----- split creation -----
     def split_window_vertically():
-        actions.user.vim_set_normal_mode_exterm()
+        actions.user.vim_set_normal_exterm()
         actions.key("ctrl-w")
         actions.key("v")
 
     def split_window_horizontally():
-        actions.user.vim_set_normal_mode_exterm()
+        actions.user.vim_set_normal_exterm()
         actions.key("ctrl-w")
         actions.key("s")
 
     # ----- split arrangement ----
     def split_move_up():
-        actions.user.vim_set_normal_mode_exterm()
+        actions.user.vim_set_normal_exterm()
         actions.key("ctrl-w")
         actions.key("K")
 
     def split_move_down():
-        actions.user.vim_set_normal_mode_exterm()
+        actions.user.vim_set_normal_exterm()
         actions.key("ctrl-w")
         actions.key("J")
 
     def split_move_left():
-        actions.user.vim_set_normal_mode_exterm()
+        actions.user.vim_set_normal_exterm()
         actions.key("ctrl-w")
         actions.key("H")
 
     def split_move_right():
-        actions.user.vim_set_normal_mode_exterm()
+        actions.user.vim_set_normal_exterm()
         actions.key("ctrl-w")
         actions.key("L")
 
