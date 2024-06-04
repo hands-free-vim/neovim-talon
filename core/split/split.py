@@ -8,7 +8,7 @@ app: neovim
 and not tag: user.vim_mode_command
 """
 
-ctx.tags = ["user.split"]
+ctx.tags = ["user.splits"]
 
 
 # https://dev.to/mr_destructive/vim-window-splits-p3p
