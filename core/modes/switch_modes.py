@@ -56,25 +56,25 @@ class Actions:
         return v
 
     def vim_set_command():
-        """set visual mode"""
+        """set command line mode"""
         v = VimMode()
         v.set_command_mode()
         return v
 
-    def vim_set_command_extern():
-        """set visual mode"""
+    def vim_set_command_exterm():
+        """set command line mode, escaping from the terminal mode"""
         v = VimMode()
         v.set_command_mode_exterm()
         return v
 
     def vim_set_replace():
-        """set visual mode"""
+        """set replace mode"""
         v = VimMode()
         v.set_replace_mode()
         return v
 
     def vim_set_visual_replace():
-        """set visual mode"""
+        """set visual replace mode"""
         v = VimMode()
         v.set_visual_replace_mode()
         return v
