@@ -29,6 +29,7 @@ and win.title: /VIM MODE/
 and win.title: /nvim/
 
 os: mac
+and win.title: /VIM MODE/
 and win.title: /nvim/
 """
 
