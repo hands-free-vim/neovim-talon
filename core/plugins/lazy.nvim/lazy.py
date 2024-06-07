@@ -66,43 +66,43 @@ class Actions:
 @ctx_off.action_class("user")
 class Actions:
     def lazy_home():
-        actions.user.vim_run_normal_exterm(":Lazy home\n")
+        actions.user.vim_run_command_exterm(":Lazy home\n")
 
     def lazy_install():
-        actions.user.vim_run_normal_exterm(":Lazy install\n")
+        actions.user.vim_run_command_exterm(":Lazy install\n")
 
     def lazy_update():
-        actions.user.vim_run_normal_exterm(":Lazy update\n")
+        actions.user.vim_run_command_exterm(":Lazy update\n")
 
     def lazy_sync():
-        actions.user.vim_run_normal_exterm(":Lazy sync\n")
+        actions.user.vim_run_command_exterm(":Lazy sync\n")
 
     def lazy_clean():
-        actions.user.vim_run_normal_exterm(":Lazy clean\n")
+        actions.user.vim_run_command_exterm(":Lazy clean\n")
 
     def lazy_clear():
-        actions.user.vim_run_normal_exterm(":Lazy clear\n")
+        actions.user.vim_run_command_exterm(":Lazy clear\n")
 
     def lazy_check():
-        actions.user.vim_run_normal_exterm(":Lazy check\n")
+        actions.user.vim_run_command_exterm(":Lazy check\n")
 
     def lazy_log():
-        actions.user.vim_run_normal_exterm(":Lazy log\n")
+        actions.user.vim_run_command_exterm(":Lazy log\n")
 
     def lazy_restore():
-        actions.user.vim_run_normal_exterm(":Lazy restore\n")
+        actions.user.vim_run_command_exterm(":Lazy restore\n")
 
     def lazy_profile():
-        actions.user.vim_run_normal_exterm(":Lazy profile\n")
+        actions.user.vim_run_command_exterm(":Lazy profile\n")
 
     def lazy_debug():
-        actions.user.vim_run_normal_exterm(":Lazy debug\n")
+        actions.user.vim_run_command_exterm(":Lazy debug\n")
 
     def lazy_help():
-        actions.user.vim_run_normal_exterm(":Lazy help\n")
+        actions.user.vim_run_command_exterm(":Lazy help\n")
 
     def lazy_health():
-        actions.user.vim_run_normal_exterm(":Lazy health\n")
+        actions.user.vim_run_command_exterm(":Lazy health\n")
 
     # def lazy_close():
 
