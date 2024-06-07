@@ -28,31 +28,6 @@ class VimAPI:
     REPLACE = "replace"
     VISUAL_REPLACE = "visual_replace"
 
-    # This is replicated from :help mode()
-    vim_modes_new = {"NORMAL": {"mode": "n", "desc": "Normal"}}
-
-    # XXX - incomplete see :help mode
-    vim_modes = {
-        "n": "Normal",
-        "no": "N Operator Pending",
-        "v": "Visual",
-        "V": "V Line",
-        "^V": "V-Block",
-        "s": "Select",
-        "S": "S·Line",
-        "i": "Insert",
-        "R": "Replace",
-        "Rv": "V·Replace",
-        "c": "Command",
-        "cv": "Vim Ex",
-        "ce": "Ex",
-        "r": "Prompt",
-        "rm": "More",
-        "r?": "Confirm",
-        "!": "Shell",
-        "t": "Terminal",
-    }
-
     def __init__(self):
         self.canceled_timeout = 0.20
         self.api = self._get_api()

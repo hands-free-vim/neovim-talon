@@ -13,6 +13,28 @@ class VimDirectInput(VimApiInternal):
     can't use neovim RPC for some reason, like if you are using something with
     a VIM-like mode, like a console with bindkeys -v set"""
 
+    # XXX - incomplete see :help mode
+    vim_modes = {
+        "n": "Normal",
+        "no": "N Operator Pending",
+        "v": "Visual",
+        "V": "V Line",
+        "^V": "V-Block",
+        "s": "Select",
+        "S": "S·Line",
+        "i": "Insert",
+        "R": "Replace",
+        "Rv": "V·Replace",
+        "c": "Command",
+        "cv": "Vim Ex",
+        "ce": "Ex",
+        "r": "Prompt",
+        "rm": "More",
+        "r?": "Confirm",
+        "!": "Shell",
+        "t": "Terminal",
+    }
+
     def __init__(self):
         self.wait_mode_timeout = 0.25
 

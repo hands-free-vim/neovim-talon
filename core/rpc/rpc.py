@@ -6,7 +6,10 @@ from .constants import VimConstants
 import logging
 
 # TODO: make sure pynvim is installed in talon python environment
-import pynvim
+try:
+    import pynvim
+except ImportError:
+    pynvim = None
 
 import time
 
@@ -102,6 +105,8 @@ class NeoVimRPC:
         self.init_ok = False
         self.nvim = None
 
+        if pynvim is None:
+            return
         self.rpc_path = self.get_active_rpc()
         if self.rpc_path is not None:
             try:
