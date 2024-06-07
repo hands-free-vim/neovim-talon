@@ -11,30 +11,18 @@ mod.setting(
 )
 ctx = Context()
 
-# Neovim (commandline version) and nvim-qt.exe (GUI version)
+# Relies on using talon.nvim
 mod.apps.neovim = """
-os: windows
-and win.title: /Neovim/
-and app.exe: nvim.exe
-
-os: windows
-and win.title: /VIM MODE/
-and app.exe: nvim.exe
-
-os: windows
-and win.title: /VIM MODE/
-and app.exe: conhost.exe
-
-os: windows
-and win.title: /Neovim/
-and app.exe: conhost.exe
-
-os: windows
-and app.exe: nvim-qt.exe
-
-os: linux
-and win.title: /VIM MODE/
+win.title: /VIM MODE/
 and win.title: /nvim/
+"""
+
+# e.g. nvim.exe 0.9.5 on Windows
+mod.apps.neovim = """
+win.title: /VIM MODE/
+win.title: /Neovim/
+win.title: /nvim.exe/
+and app.exe: conhost.exe
 """
 
 ctx.matches = r"""
