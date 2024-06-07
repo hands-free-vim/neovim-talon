@@ -1,6 +1,6 @@
 from talon import Module
 
-from ..rpc.modes import VimMode
+from ..rpc.api import VimAPI
 
 mod = Module()
 
@@ -10,10 +10,10 @@ mod = Module()
 class Actions:
     def vim_is_terminal():
         """check if currently in terminal mode"""
-        v = VimMode()
+        v = VimAPI()
         return v.is_terminal_mode()
 
     def vim_is_visual():
         """check if currently in visual mode"""
-        v = VimMode()
+        v = VimAPI()
         return v.is_visual_mode()
