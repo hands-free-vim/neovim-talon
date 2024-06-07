@@ -60,6 +60,9 @@ class VimAPI:
 
     def _get_api(self):
         """Return an RPC or direct input API object"""
+        # XXX - This is a hack but just trying to get rid of "DEBUG Using selector:
+        # EpollSelector"
+        # logging.getLogger("asyncio").setLevel(logging.WARNING)
         self.nvrpc = NeoVimRPC()
         if self.nvrpc.init_ok is True:
             return VimRPC(self.nvrpc)
