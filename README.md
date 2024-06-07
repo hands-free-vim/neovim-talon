@@ -14,6 +14,7 @@ Talon user file set for controlling both neovim editing and neovim terminals usi
 
 ## Prerequisites
 
+- community Talon commands: https://github.com/talonhub/community (Or you will have to add specific Talon actions for certain features to work)
 - neovim Python package: https://github.com/neovim/pynvim (installed in Talon Python)
 
 ### Windows
