@@ -7,7 +7,7 @@ app: neovim
 win.title: /TERM:C:\\Windows\\system32\\cmd.exe/
 """
 
-mod.apps.repl = r"""
+mod.apps.talon_repl = r"""
 app: neovim
 win.title: /TERM:Talon - REPL/
 """
