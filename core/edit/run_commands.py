@@ -35,7 +35,7 @@ class Actions:
     def vim_run_normal_np(cmd: str):
         """run a given list of commands in normal mode, don't preserve
         INSERT"""
-        actions.user.vim_set_normal_np(auto=True)
+        actions.user.vim_set_normal_np()
         actions.insert(cmd)
 
     def vim_run_normal_exterm(cmd: str = None):
@@ -47,7 +47,7 @@ class Actions:
 
     def vim_run_normal_key(cmd: str):
         """press a given key in normal mode"""
-        actions.user.vim_set_normal(auto=False)
+        actions.user.vim_set_normal()
         actions.key(cmd)
 
     def vim_run_normal_exterm_key(cmd: str):
@@ -57,7 +57,7 @@ class Actions:
 
     def vim_run_normal_keys(keys: str):
         """press a given list of keys in normal mode"""
-        actions.user.vim_set_normal(auto=False)
+        actions.user.vim_set_normal()
         for key in keys.split(" "):
             actions.key(key)
 
