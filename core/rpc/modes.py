@@ -154,15 +154,15 @@ class VimMode:
         if cmd[-1] == "\n":
             actions.key("enter")
 
-    def set_normal_mode(self, auto=True):
+    def set_normal_mode(self):
         return self.adjust_mode(self.NORMAL)
 
     def set_normal_mode_exterm(self):
         return self.adjust_mode(self.NORMAL, escape_terminal=True)
 
     # XXX - revisit auto, maybe have separate method version or something
-    def set_normal_mode_np(self, auto=True):
-        return self.adjust_mode(self.NORMAL, no_preserve=True, auto=auto)
+    def set_normal_mode_np(self):
+        return self.adjust_mode(self.NORMAL, no_preserve=True)
 
     def set_visual_mode(self):
         return self.adjust_mode(self.VISUAL)
