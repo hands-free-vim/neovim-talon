@@ -32,7 +32,7 @@ class AppActions:
 @ctx.action_class("user")
 class UserActions:
     def tab_jump(number: int):
-        actions.user.vim_run_normal_exterm(f"{number}gt\n")
+        actions.user.vim_run_normal_exterm(f"{number}gt")
 
     # def tab_jump_from_back(number: int):
 
