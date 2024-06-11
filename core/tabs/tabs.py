@@ -53,14 +53,24 @@ class UserActions:
     def tab_focus_most_recent():
         actions.user.vim_normal_mode_exterm("g\t")
 
-    def tab_rename():
-        # Requires the Taboo plugin
-        actions.user.vim_normal_mode_exterm(":TabooRename ")
+
+mod.setting(
+    "tab_name_format",
+    type=str,
+    default="ALL_CAPS,DASH_SEPARATED",
+    desc="Default format of renamed tab names in an app",
+)
 
 
 @mod.action_class
 class TabActions:
-    def tab_rename():
+    def tab_rename_wrapper(name: str):
+        """Applies formatting to tab name prior to passing to overridden tab_rename()"""
+        if len(name):
+            name = actions.user.formatted_text(name, actions.user.tab_name_format())
+        actions.user.tab_rename(name)
+
+    def tab_rename(name: str):
         """Renames the current tab."""
 
     def tab_focus_most_recent():
