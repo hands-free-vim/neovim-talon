@@ -13,4 +13,4 @@ and user.neovim_plugin: taboo
 class TabActions:
     def tab_rename(name: str):
         # Requires the Taboo plugin
-        actions.user.vim_normal_mode_exterm(f":TabooRename {name}")
+        actions.user.vim_run_normal_exterm(f":TabooRename {name}")
