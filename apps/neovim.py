@@ -1,6 +1,17 @@
 from talon import Context, Module, actions, app, settings, ui
 
+
 mod = Module()
+
+windows_shortcut = "ctrl-shift-f12"
+linux_and_mac_shortcut = "ctrl-`"
+default_shortcut = windows_shortcut if app.platform == "windows" else linux_and_mac_shortcut
+mod.setting(
+    "neovim_command_server_shortcut",
+    type=str,
+    default=default_shortcut,
+    desc="The keyboard shortcut to trigger RPC interaction with the command server",
+)
 ctx = Context()
 
 # Relies on using talon.nvim
@@ -31,7 +42,8 @@ class CommandClientActions:
         return "neovim-command-server"
 
     def trigger_command_server_command_execution():
-        actions.key("ctrl-shift-f12")
+        shortcut = settings.get("user.neovim_command_server_shortcut")
+        actions.key(shortcut)
 
 
 # Based on you using a custom titlestring see doc/vim.md
