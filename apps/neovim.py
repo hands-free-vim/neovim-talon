@@ -11,10 +11,14 @@ and win.title: /nvim/
 
 # e.g. nvim.exe 0.9.5 on Windows
 mod.apps.neovim = """
-win.title: /VIM MODE/
-win.title: /Neovim/
-win.title: /nvim.exe/
-and app.exe: conhost.exe
+app.exe: conhost.exe
+and win.title: /VIM MODE/
+
+app.exe: conhost.exe
+and win.title: /Neovim/
+
+app.exe: conhost.exe
+and win.title: /nvim.exe/
 """
 
 ctx.matches = r"""
