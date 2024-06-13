@@ -16,11 +16,7 @@ ctx.tags = ["user.splits"]
 class UserActions:
     # ----- split creation -----
     def split_window_vertically():
-<<<<<<< HEAD
         actions.user.vim_set_normal_exterm()
-=======
-        actions.user.vim_set_normal_mode_exterm()
->>>>>>> de01b59 (fix: rework code to be usable with community)
         actions.key("ctrl-w")
         actions.key("v")
 
