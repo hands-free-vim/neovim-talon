@@ -5,21 +5,22 @@ mod = Module()
 # when lazy main menu is not shown
 ctx_off = Context()
 ctx_off.matches = r"""
-app: neovim
+user.neovim_plugin: lazy
 and not win.title: /FILETYPE:\[lazy\]/
+
 """
 
 # when lazy main menu is shown
 ctx_on = Context()
 ctx_on.matches = r"""
-app: neovim
+user.neovim_plugin: lazy
 and win.title: /FILETYPE:\[lazy\]/
 """
 
 
 # https://github.com/folke/lazy.nvim?tab=readme-ov-file#-usage
 @mod.action_class
-class Actions:
+class bActions:
     def lazy_home():
         """open lazy home menu"""
 
@@ -64,7 +65,7 @@ class Actions:
 
 
 @ctx_off.action_class("user")
-class Actions:
+class LazyGlobalActions:
     def lazy_home():
         actions.user.vim_run_command_exterm(":Lazy home\n")
 
@@ -108,7 +109,7 @@ class Actions:
 
 
 @ctx_on.action_class("user")
-class Actions:
+class LazyMenuActions:
     def lazy_home():
         actions.user.vim_run_normal("H")
 

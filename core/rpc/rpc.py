@@ -87,14 +87,17 @@ class NeoVimRPC:
 
                 # NOTE: This is used to avoid "Using selector: EpollSelector" spam
                 self.nvim = pynvim.attach("socket", path=self.rpc_path)
-            except RuntimeError:
+            except RuntimeError as e:
+                print(e)
                 return
             self.init_ok = True
         else:
+            print("Empty RPC path")
             return
 
     def get_active_rpc(self):
         title = ui.active_window().title
+        print(title)
         if "RPC" in title:
             named_pipe = title.split("RPC:")[1].split(" ")[0]
             return named_pipe

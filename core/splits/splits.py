@@ -98,11 +98,6 @@ class UserActions:
     def split_close_all():
         actions.user.vim_run_normal("\\<c-w>o")
 
-    # FIXME: Move this to vim-zoom
-    # Requirement: https://github.com/dhruvasagar/vim-zoom
-    def split_toggle_maximize():
-        actions.user.vim_run_normal("\\<c-w>m")
-
 
 # TEMPORARY: Once https://github.com/talonhub/community/pull/1446 is merged, this should be removed
 @mod.action_class

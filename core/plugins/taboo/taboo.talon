@@ -1,4 +1,3 @@
-user.neovim_plugin: taboo
+user.neovim_plugin: telescope
 -
-
-taboo test: app.notify("taboo")
+test test:                  user.notify("telescope")
