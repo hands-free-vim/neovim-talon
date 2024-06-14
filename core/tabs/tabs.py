@@ -1,4 +1,6 @@
-from talon import Context, actions
+from talon import Context, Module, actions
+
+mod = Module()
 
 # TODO: should we also match tag: user.tabs or tabs are always present anyway so does not matter?
 ctx = Context()
@@ -48,3 +50,25 @@ class UserActions:
     # def tab_duplicate():
 
     # def tab_back():
+
+    # requires: https://github.com/gcmt/taboo.vim/
+    def tab_rename(text: str = ""):
+        actions.user.vim_run_command_exterm(f":TabooRename {text}")
+
+    def tab_new_named(text: str = ""):
+        actions.user.vim_run_command_exterm(f":TabooOpen {text}")
+
+    def tab_reset():
+        actions.user.vim_run_command_exterm(":TabooReset")
+
+
+@mod.action_class
+class Actions:
+    def tab_rename(text: str = ""):
+        """rename the current tab with the name provided"""
+
+    def tab_new_named(text: str = ""):
+        """open a new tab and and gives it the name provided"""
+
+    def tab_reset():
+        """remove the custom label associated with the current tab"""
