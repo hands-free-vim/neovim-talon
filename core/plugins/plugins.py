@@ -53,6 +53,8 @@ def _lazyvim_plugin_list(rpc: NeoVimRPC) -> list[str]:
             name = plugin.split("/")[1]
             if name.endswith(".nvim"):
                 name = name[:-5]
+            if name.endswith(".vim"):
+                name = name[:-4]
             plugins.append(name)
     except pynvim.api.NvimError as e:
         print(e)
@@ -104,8 +106,8 @@ def neovim_update_plugin_list() -> list[str]:
         return []
 
     plugin_manager_funcs = [
-        _nixvim_plugin_list,
         _lazyvim_plugin_list,
+        _nixvim_plugin_list,
         _vundle_plugin_list,
         _vim_plug_plugin_list,
         _packer_plugin_list,
