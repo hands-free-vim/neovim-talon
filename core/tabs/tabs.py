@@ -1,7 +1,5 @@
 from talon import Context, Module, actions
 
-mod = Module()
-
 # TODO: should we also match tag: user.tabs or tabs are always present anyway so does not matter?
 ctx = Context()
 ctx.matches = r"""
