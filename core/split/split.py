@@ -98,10 +98,6 @@ class UserActions:
         actions.key("ctrl-w")
         actions.key("o")
 
-    # Requirement: https://github.com/dhruvasagar/vim-zoom
-    def split_toggle_maximize():
-        actions.user.vim_run_normal_exterm_key("ctrl-w m")
-
 
 @mod.action_class
 class SplitActions:
