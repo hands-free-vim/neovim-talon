@@ -107,11 +107,11 @@ class UserActions:
 class SplitActions:
     def split_move_next_tab():
         """Move the current window to the next tab"""
-        actions.user.vim_run_command_exterm(":call MoveToNextTab()\n")
+        actions.user.vim_run_command_exterm(":lua vim.cmd.MoveSplitToNextTab()\n")
 
     def split_move_previous_tab():
         """Move the current window to the previous tab"""
-        actions.user.vim_run_command_exterm(":call MoveToPrevTab()\n")
+        actions.user.vim_run_command_exterm(":lua vim.cmd.MoveSplitToPreviousTab()\n")
 
     def split_move_new_tab():
         """Move the current window to a new tab"""
