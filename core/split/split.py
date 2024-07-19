@@ -99,7 +99,7 @@ class UserActions:
         actions.key("o")
 
     # Requirement: https://github.com/dhruvasagar/vim-zoom
-    def split_layout_toggle_maximize():
+    def split_toggle_maximize():
         actions.user.vim_run_normal_exterm_key("ctrl-w m")
 
 
@@ -109,7 +109,7 @@ class SplitActions:
         """Move the current window to the next tab"""
         actions.user.vim_run_command_exterm(":call MoveToNextTab()\n")
 
-    def split_move_last_tab():
+    def split_move_previous_tab():
         """Move the current window to the previous tab"""
         actions.user.vim_run_command_exterm(":call MoveToPrevTab()\n")
 
