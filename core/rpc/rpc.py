@@ -1,11 +1,16 @@
+import logging
+
 from talon import Context, Module, actions, app, settings, ui
 
 from .direct_input import VimDirectInput
 
-import logging
-
 # TODO: make sure pynvim is installed in talon python environment
-import pynvim
+try:
+    import pynvim
+except:
+    app.notify(
+        "Please install pynvim in the talon python environment for neovim support"
+    )
 
 
 class VimRPC:

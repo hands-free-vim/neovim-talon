@@ -1,7 +1,14 @@
 import pathlib
-import pynvim
-
 from talon import Context, Module, actions, app, settings, ui, registry
+
+# TODO: make sure pynvim is installed in talon python environment
+try:
+    import pynvim
+except:
+    app.notify(
+        "Please install pynvim in the talon python environment for neovim support"
+    )
+
 from ..rpc.rpc import NeoVimRPC
 
 mod = Module()
