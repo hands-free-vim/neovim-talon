@@ -6,7 +6,7 @@ mod = Module()
 mod.setting(
     "neovim_command_server_shortcut",
     type=str,
-    default="ctrl-shift-f12",
+    default="ctrl-`",
     desc="The shortcut to trigger the command server",
 )
 ctx = Context()
@@ -17,10 +17,13 @@ win.title: /VIM MODE/
 and win.title: /nvim/
 """
 
-# e.g. nvim.exe 0.9.5 on Windows
 mod.apps.neovim = """
 win.title: /VIM MODE/
+and app.exe: conhost.exe
+
 win.title: /Neovim/
+and app.exe: conhost.exe
+
 win.title: /nvim.exe/
 and app.exe: conhost.exe
 """
