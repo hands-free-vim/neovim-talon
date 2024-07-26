@@ -92,7 +92,8 @@ class NeoVimRPC:
 
                 # NOTE: This is used to avoid "Using selector: EpollSelector" spam
                 self.nvim = pynvim.attach("socket", path=self.rpc_path)
-            except RuntimeError:
+            except (NameError, RuntimeError) as e:
+                print(e)
                 return
             self.init_ok = True
         else:
