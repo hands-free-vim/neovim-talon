@@ -1,11 +1,15 @@
 from talon import Context, Module, actions, app, settings, ui
 
-
 mod = Module()
 
-windows_shortcut = "ctrl-shift-f12"
-linux_and_mac_shortcut = "ctrl-`"
-default_shortcut = windows_shortcut if app.platform == "windows" else linux_and_mac_shortcut
+match app.platform:
+    case "windows":
+        default_shortcut = "ctrl-shift-f12"
+    case "mac":
+        default_shortcut = "ctrl-alt-\\"
+    case _:
+        default_shortcut = "ctrl-`"
+
 mod.setting(
     "neovim_command_server_shortcut",
     type=str,
