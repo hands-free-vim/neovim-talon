@@ -1,5 +1,4 @@
 # https://github.com/dhruvasagar/vim-zoom
-
 from talon import Context, Module, actions
 
 mod = Module()

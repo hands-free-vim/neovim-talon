@@ -1,7 +1,14 @@
 import pathlib
-import pynvim
-
 from talon import Context, Module, actions, app, settings, ui, registry
+
+# TODO: make sure pynvim is installed in talon python environment
+try:
+    import pynvim
+except:
+    app.notify(
+        "Please install pynvim in the talon python environment for neovim support"
+    )
+
 from ..rpc.rpc import NeoVimRPC
 
 mod = Module()
@@ -16,7 +23,7 @@ def scope():
 neovim_plugin_cache = None
 
 
-def _nixvim_plugin_list(rpc):
+def _nixvim_plugin_list(rpc: NeoVimRPC) -> list[str]:
     """Pulls the list of plugins used by nixvim out of the nix store
 
     nixvim sets up a custom pack dir called myNeovimPackages"""
@@ -34,11 +41,11 @@ def _nixvim_plugin_list(rpc):
     return plugins
 
 
-def _lazyvim_plugin_list(rpc):
+def _lazyvim_plugin_list(rpc: NeoVimRPC) -> list[str]:
     """Pulls the list of plugins used by lazyvim plugin manager"""
     plugins = []
     try:
-        # Returns a list of tables like { { "name", _ = ... }, { "name1", _ = ... }, ...}
+        # Returns a list of tables like { { "name0", _ = ... }, { "name1", _ = ... }, ...}
         lua = """
         local plugins = require('lazy').plugins()
         local names = {}
@@ -54,6 +61,8 @@ def _lazyvim_plugin_list(rpc):
             name = plugin.split("/")[1]
             if name.endswith(".nvim"):
                 name = name[:-5]
+            if name.endswith(".vim"):
+                name = name[:-4]
             plugins.append(name)
     except pynvim.api.NvimError as e:
         print(e)
@@ -61,7 +70,7 @@ def _lazyvim_plugin_list(rpc):
     return plugins
 
 
-def _vundle_plugin_list(rpc):
+def _vundle_plugin_list(rpc: NeoVimRPC) -> list[str]:
     """Pulls the list of plugins used by Vundle plugin manager"""
     plugins = []
     try:
@@ -73,7 +82,7 @@ def _vundle_plugin_list(rpc):
     return plugins
 
 
-def _vim_plug_plugin_list(rpc):
+def _vim_plug_plugin_list(rpc: NeoVimRPC) -> list[str]:
     """Pulls the list of plugins used by vim-plug plugin manager"""
     plugins = []
     try:
@@ -85,7 +94,7 @@ def _vim_plug_plugin_list(rpc):
     return plugins
 
 
-def _packer_plugin_list(rpc):
+def _packer_plugin_list(rpc: NeoVimRPC) -> list[str]:
     """Pulls the list of plugins used by packer plugin manager"""
     plugins = []
     plugin_list = rpc.nvim.command_output(":lua print(vim.g.packer_plugins)")
@@ -96,7 +105,7 @@ def _packer_plugin_list(rpc):
     return plugins
 
 
-def neovim_update_plugin_list():
+def neovim_update_plugin_list() -> list[str]:
     """Uses neovim RPC to get the list of plugins"""
     if "neovim" not in registry.active_apps():
         return []
@@ -105,8 +114,8 @@ def neovim_update_plugin_list():
         return []
 
     plugin_manager_funcs = [
-        _nixvim_plugin_list,
         _lazyvim_plugin_list,
+        _nixvim_plugin_list,
         _vundle_plugin_list,
         _vim_plug_plugin_list,
         _packer_plugin_list,
@@ -120,7 +129,7 @@ def neovim_update_plugin_list():
     return []
 
 
-def neovim_plugin_list():
+def neovim_plugin_list() -> set[str] | None:
     """Returns a cached or new list of installed neovim plugins"""
     if "neovim" not in registry.active_apps():
         return None
@@ -146,7 +155,6 @@ class PluginActions:
 
     def neovim_plugin_list_print():
         """Print the list of installed neovim plugins"""
-        global neovim_plugin_cache
         if neovim_plugin_cache is None:
             actions.user.neovim_plugin_list_refresh()
         print(neovim_plugin_cache)

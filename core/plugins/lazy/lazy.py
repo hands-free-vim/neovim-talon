@@ -3,16 +3,16 @@ from talon import Module, Context, actions
 mod = Module()
 
 # when lazy main menu is not shown
-ctx_off = Context()
-ctx_off.matches = r"""
+ctx_global = Context()
+ctx_global.matches = r"""
 user.neovim_plugin: lazy
 and not win.title: /FILETYPE:\[lazy\]/
 
 """
 
 # when lazy main menu is shown
-ctx_on = Context()
-ctx_on.matches = r"""
+ctx_open = Context()
+ctx_open.matches = r"""
 user.neovim_plugin: lazy
 and win.title: /FILETYPE:\[lazy\]/
 """
@@ -20,7 +20,7 @@ and win.title: /FILETYPE:\[lazy\]/
 
 # https://github.com/folke/lazy.nvim?tab=readme-ov-file#-usage
 @mod.action_class
-class bActions:
+class Actions:
     def lazy_home():
         """open lazy home menu"""
 
@@ -64,7 +64,7 @@ class bActions:
         """close lazy home menu"""
 
 
-@ctx_off.action_class("user")
+@ctx_global.action_class("user")
 class LazyGlobalActions:
     def lazy_home():
         actions.user.vim_run_command_exterm(":Lazy home\n")
@@ -108,7 +108,7 @@ class LazyGlobalActions:
     # def lazy_close():
 
 
-@ctx_on.action_class("user")
+@ctx_open.action_class("user")
 class LazyMenuActions:
     def lazy_home():
         actions.user.vim_run_normal("H")

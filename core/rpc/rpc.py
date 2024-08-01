@@ -1,11 +1,16 @@
+import logging
+
 from talon import Context, Module, actions, app, settings, ui
 
 from .direct_input import VimDirectInput
 
-import logging
-
 # TODO: make sure pynvim is installed in talon python environment
-import pynvim
+try:
+    import pynvim
+except:
+    app.notify(
+        "Please install pynvim in the talon python environment for neovim support"
+    )
 
 
 class VimRPC:
@@ -87,7 +92,7 @@ class NeoVimRPC:
 
                 # NOTE: This is used to avoid "Using selector: EpollSelector" spam
                 self.nvim = pynvim.attach("socket", path=self.rpc_path)
-            except RuntimeError as e:
+            except (NameError, RuntimeError) as e:
                 print(e)
                 return
             self.init_ok = True

@@ -3,11 +3,19 @@ from talon import Context, Module, actions, app, settings, ui
 
 mod = Module()
 
+match app.platform:
+    case "windows":
+        default_shortcut = "ctrl-shift-f12"
+    case "mac":
+        default_shortcut = "ctrl-alt-\\"
+    case _:
+        default_shortcut = "ctrl-`"
+
 mod.setting(
     "neovim_command_server_shortcut",
     type=str,
-    default="ctrl-`",
-    desc="The shortcut to trigger the command server",
+    default=default_shortcut,
+    desc="The keyboard shortcut to trigger RPC interaction with the command server",
 )
 ctx = Context()
 
@@ -17,15 +25,16 @@ win.title: /VIM MODE/
 and win.title: /nvim/
 """
 
+# e.g. nvim.exe 0.9.5 on Windows
 mod.apps.neovim = """
-win.title: /VIM MODE/
-and app.exe: conhost.exe
+app.exe: conhost.exe
+and win.title: /VIM MODE/
 
-win.title: /Neovim/
-and app.exe: conhost.exe
+app.exe: conhost.exe
+and win.title: /Neovim/
 
-win.title: /nvim.exe/
-and app.exe: conhost.exe
+app.exe: conhost.exe
+and win.title: /nvim.exe/
 """
 
 ctx.matches = r"""
