@@ -8,7 +8,7 @@ from .constants import VimConstants
 # TODO: make sure pynvim is installed in talon python environment
 try:
     import pynvim
-except:
+except Exception as e:
     app.notify(
         "Please install pynvim in the talon python environment for neovim support"
     )
@@ -107,6 +107,8 @@ class NeoVimRPC:
         self.init_ok = False
         self.nvim = None
 
+        if pynvim is None:
+            return
         self.rpc_path = self.get_active_rpc()
         if self.rpc_path is not None:
             try:
