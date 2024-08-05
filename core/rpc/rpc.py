@@ -4,6 +4,7 @@ from talon import Context, Module, actions, app, settings, ui
 
 from .direct_input import VimDirectInput
 from .constants import VimConstants
+from .api_internal import VimApiInternal
 
 # TODO: make sure pynvim is installed in talon python environment
 try:
@@ -16,7 +17,7 @@ except Exception as e:
 import time
 
 
-class VimRPC:
+class VimRPC(VimApiInternal):
     """Implementation of functionality when RPC is available."""
 
     def __init__(self, nvrpc):
