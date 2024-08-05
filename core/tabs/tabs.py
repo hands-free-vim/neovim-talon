@@ -1,6 +1,5 @@
 from talon import Context, Module, actions, settings
 
-# TODO: should we also match tag: user.tabs or tabs are always present anyway so does not matter?
 mod = Module()
 ctx = Context()
 ctx.matches = r"""
@@ -47,10 +46,14 @@ class UserActions:
     # def tab_clone():
 
     def tab_focus_most_recent():
-        actions.user.vim_normal_exterm("g\t")
+        actions.user.vim_normal_mode_exterm("g\t")
+
+    def tab_rename(name: str = ""):
+        # Requires the Taboo plugin
+        actions.user.vim_normal_mode_exterm(f":TabooRename {name}")
 
 
-# FIXME: TEMPORARY: Once https://github.com/talonhub/community/pull/1446 is merged, everything below should be removed
+# FIXME: TEMPORARY: Once https://github.com/talonhub/community/pull/1446 is merged, these should be removed
 mod.setting(
     "tab_name_format",
     type=str,
@@ -62,7 +65,7 @@ mod.setting(
 @mod.action_class
 class TabActions:
     # Creation
-    def tab_open_with_name(name: str):
+    def tab_open_with_name(name: str = ""):
         """Opens a tab renamed to the specified"""
 
     def tab_clone():
@@ -107,10 +110,10 @@ class TabActions:
     def tab_focus_most_recent():
         """Focuses on the most recently viewed tab"""
 
-    def tab_focus_named(name: str):
+    def tab_focus_named(name: str = ""):
         """Focuses on a tab that matches a specified name"""
 
-    def tab_search(name: str):
+    def tab_search(name: str = ""):
         """Searches through the tabs for the specified name"""
 
     # Arrangement
@@ -151,10 +154,10 @@ class TabActions:
         as vscode, jetbrains, etc."""
 
     # Renaming
-    def tab_rename(name: str):
+    def tab_rename(name: str = ""):
         """Renames the current tab"""
 
-    def tab_rename_formatted(name: str):
+    def tab_rename_formatted(name: str = ""):
         """Applies formatting to tab name prior to passing to tab_rename()"""
         if len(name):
             name = actions.user.formatted_text(name, actions.user.tab_name_format())

@@ -1,6 +1,8 @@
 app: neovim
 -
 
+# FIXME: TEMPORARY: Once https://github.com/talonhub/community/pull/1446 is merged, these should be removed
+
 # Creation
 
 ## Empty splits
