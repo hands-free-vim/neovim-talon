@@ -1,13 +1,11 @@
 from talon import Context, Module, actions, app, settings, ui
 
 from ..rpc.api import VimAPI
-from ..rpc.modes import VimMode
 
 mod = Module()
 
 
 # Actions to run commands in specific modes
-# TODO: move the v = VimMode() + switch of mode to mode.py and just call them here
 @mod.action_class
 class Actions:
     def vim_run_insert(cmd: str):

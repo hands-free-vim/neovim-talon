@@ -3,6 +3,7 @@ import logging
 from talon import Context, Module, actions, app, settings, ui
 
 from .direct_input import VimDirectInput
+from .constants import VimConstants
 
 # TODO: make sure pynvim is installed in talon python environment
 try:
@@ -12,6 +13,8 @@ except:
         "Please install pynvim in the talon python environment for neovim support"
     )
 
+import time
+
 
 class VimRPC:
     """Implementation of functionality when RPC is available."""
@@ -20,7 +23,7 @@ class VimRPC:
         self.nvrpc = nvrpc
 
     def run_command_mode_command(self, cmd):
-        """Run a command in commandline mode using RPC.
+        """Run a command in command line mode using RPC.
 
         This requires some special casing because of support for direct key
         input. This means that certain commands will come in a newline
@@ -59,14 +62,42 @@ class VimRPC:
                 print("NvimError END")
 
     def run_command_mode_command_exterm(self, cmd):
-        """Exit terminal mode and run a command in commandline mode using RPC."""
+        """Exit terminal mode and run a command in command line mode using RPC."""
         if actions.user.vim_is_terminal():
             actions.user.vim_set_normal_exterm()
         self.run_command_mode_command(cmd)
 
     def run_normal_mode_command(self, cmd):
+        """Run a command in normal mode using RPC."""
         cmd = cmd.replace('"', r"\"")
         self.nvrpc.nvim.command(f':exe "normal" "{cmd}"', async_=True)
+
+    def mode(self):
+        """Get the current mode using RPC."""
+        return self.nvrpc.get_active_mode()["mode"]
+
+    def wait_mode_change(self, wanted):
+        """Wait for the mode to change to the wanted mode using RPC."""
+        check_count = 0
+        max_check_count = 20
+        active_mode = self.nvrpc.get_active_mode()["mode"]
+        while wanted != active_mode:
+            # XXX - There's probably a cleaner way to do this, but there's
+            # a lot of normal modes which we don't seem to match on, but
+            # technically should
+            if wanted == "n" and active_mode in VimConstants.normal_mode_indicators:
+                return True
+
+            # XXX - for wait value should be configurable
+            time.sleep(0.020)
+            # try to force redraw to prevent weird infinite loops
+            self.nvrpc.nvim.command("redraw")
+            check_count += 1
+            if check_count > max_check_count:
+                # prevent occasional infinite loops stalling talon
+                return False
+            active_mode = self.nvrpc.get_active_mode()["mode"]
+            return True
 
 
 class NeoVimRPC:
