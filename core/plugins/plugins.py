@@ -57,7 +57,13 @@ def _lazyvim_plugin_list(rpc: NeoVimRPC) -> list[str]:
         # Returns a list of strings like:
         # ['folke/lazy.nvim', 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim']
         for plugin in plugin_list:
-            name = plugin.split("/")[1]
+            try:
+                name = plugin.split("/")[1]
+            except IndexError:
+                # Some plugin entries can be specified without the repo, if
+                # they are specified with a repo elsewhere.
+                # name = plugin.split("/")[0]
+                continue
             if name.endswith(".nvim"):
                 name = name[:-5]
             if name.endswith(".vim"):
