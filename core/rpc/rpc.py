@@ -66,7 +66,7 @@ class VimRPC:
 
     def run_normal_mode_command(self, cmd):
         cmd = cmd.replace('"', r"\"")
-        self.nvrpc.nvim.command(f':exe "normal" "{cmd}"', async_=True)
+        self.nvrpc.nvim.command(f':exe "normal!" "{cmd}"', async_=True)
 
 
 class NeoVimRPC:
